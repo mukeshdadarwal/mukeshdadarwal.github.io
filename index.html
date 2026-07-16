@@ -5,167 +5,359 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="SOBIvKSE8nPFIctcc2s-31Qacg1mpcCjKqZqNINK6kE" />
 <title>MKD Labs — Apps for Families</title>
-<meta name="description" content="Apps by Mukesh Kumar Dadarwal: Little Brain — an offline kids app to learn Hindi and 10 more Indian languages, and Hindu Calendar हिन्दू पंचांग — Panchang, Kundali and Muhurat, fully offline in Hindi.">
+<meta name="description" content="MKD Labs builds simple, honest apps for families: Little Brain — an offline kids app to learn Hindi and 10 more Indian languages, and Hindu Calendar हिन्दू पंचांग — Panchang, Kundali and Muhurat, fully offline in Hindi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --violet: #6C4CE8;
-    --violet-deep: #5438C9;
-    --saffron: #E8760C;
-    --saffron-deep: #C05E05;
-    --ink: #2B2350;
-    --ink-soft: #6B6490;
-    --bg: #F7F5FF;
-    --card: #FFFFFF;
+    --bg: #0B0E1A;
+    --bg-soft: #111527;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --text: #EDEFF7;
+    --text-soft: #A7ADC7;
+    --violet: #8B7CFF;
+    --violet-deep: #6C4CE8;
+    --saffron: #FFA149;
+    --saffron-deep: #E8760C;
+    --green: #4ADE80;
+    --radius: 24px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
   }
+  h1, h2, h3 { font-family: "Sora", "Inter", sans-serif; letter-spacing: -0.02em; }
+
+  /* ---- background glows ---- */
+  .glow {
+    position: fixed; border-radius: 50%; filter: blur(120px);
+    opacity: 0.35; pointer-events: none; z-index: 0;
+  }
+  .glow.g1 { width: 560px; height: 560px; background: var(--violet-deep); top: -180px; left: -120px; }
+  .glow.g2 { width: 480px; height: 480px; background: #B84DD9; top: 30%; right: -200px; opacity: 0.22; }
+  .glow.g3 { width: 520px; height: 520px; background: var(--saffron-deep); bottom: -220px; left: 20%; opacity: 0.18; }
+
+  /* ---- nav ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(11, 14, 26, 0.65);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .nav-inner {
+    max-width: 1060px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+  .logo .mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--violet), var(--saffron));
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Sora", sans-serif; font-weight: 800; font-size: 15px; color: #0B0E1A;
+  }
+  .logo span.name { font-family: "Sora", sans-serif; font-weight: 700; font-size: 1.05em; }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a {
+    color: var(--text-soft); text-decoration: none; font-size: 0.93em; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ---- hero ---- */
   .hero {
-    background: linear-gradient(135deg, var(--violet), var(--violet-deep));
-    color: #fff;
-    text-align: center;
-    padding: 56px 24px 48px;
+    position: relative; z-index: 1; text-align: center;
+    padding: 168px 24px 110px; max-width: 860px; margin: 0 auto;
   }
-  .hero h1 { font-size: 2em; margin: 8px 0 4px; }
-  .hero p.tag { font-size: 1.1em; opacity: 0.92; max-width: 620px; margin: 0 auto; }
-  main { max-width: 760px; margin: 0 auto; padding: 32px 24px 12px; }
-  .card {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 24px rgba(108, 76, 232, 0.10);
+  .hero .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--card-border); background: var(--card);
+    border-radius: 999px; padding: 7px 18px; font-size: 0.88em; color: var(--text-soft);
+    margin-bottom: 28px;
   }
-  .card h2 { font-size: 1.25em; margin-bottom: 10px; }
-  .app-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-  .app-icon {
-    font-size: 34px; width: 60px; height: 60px; border-radius: 16px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  .hero h1 {
+    font-size: clamp(2.4em, 6vw, 4em); font-weight: 800; line-height: 1.12;
   }
-  .app-icon.brain { background: linear-gradient(135deg, #7C5CFF, #5438C9); }
-  .app-icon.om { background: linear-gradient(135deg, #F09030, #C05E05); }
-  .app-head h2 { margin-bottom: 0; }
-  .app-head .sub { color: var(--ink-soft); font-size: 0.92em; }
-  ul.features { list-style: none; margin-top: 10px; }
-  ul.features li { padding: 5px 0 5px 2px; }
-  .langs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .langs span {
-    background: var(--bg);
-    border: 1px solid #E3DCFF;
-    border-radius: 999px;
-    padding: 4px 14px;
-    font-size: 0.95em;
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--violet) 10%, #D98BFF 50%, var(--saffron) 95%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .get-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-  .play-btn {
+  .hero p.sub {
+    color: var(--text-soft); font-size: 1.18em; max-width: 620px;
+    margin: 22px auto 38px;
+  }
+  .hero .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
     display: inline-flex; align-items: center; gap: 10px;
-    background: #1B1B1F; color: #fff; text-decoration: none;
-    border-radius: 12px; padding: 10px 20px; line-height: 1.25;
+    border-radius: 14px; padding: 13px 26px; text-decoration: none;
+    font-weight: 600; font-size: 0.98em; transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
-  .play-btn:hover { background: #000; }
-  .play-btn .tri { font-size: 22px; }
-  .play-btn small { display: block; font-size: 0.7em; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.4px; }
-  .play-btn span.big { font-size: 1.05em; font-weight: 600; }
+  .btn.primary {
+    background: linear-gradient(135deg, var(--violet-deep), #9D4EDD);
+    color: #fff; box-shadow: 0 8px 28px rgba(108, 76, 232, 0.4);
+  }
+  .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(108, 76, 232, 0.55); }
+  .btn.ghost {
+    border: 1px solid var(--card-border); color: var(--text); background: var(--card);
+  }
+  .btn.ghost:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+
+  .trust-row {
+    display: flex; gap: 26px; justify-content: center; flex-wrap: wrap;
+    margin-top: 54px; color: var(--text-soft); font-size: 0.92em;
+  }
+  .trust-row span { display: flex; align-items: center; gap: 8px; }
+  .trust-row b { color: var(--green); font-weight: 600; }
+
+  /* ---- sections ---- */
+  section { position: relative; z-index: 1; max-width: 1060px; margin: 0 auto; padding: 70px 24px; }
+  .sec-head { text-align: center; margin-bottom: 52px; }
+  .sec-head h2 { font-size: clamp(1.7em, 3.5vw, 2.3em); font-weight: 700; }
+  .sec-head p { color: var(--text-soft); margin-top: 10px; }
+
+  /* ---- app cards ---- */
+  .app-card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: var(--radius); padding: 40px;
+    margin-bottom: 30px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .app-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  }
+  .app-card .info h3 { font-size: 1.5em; margin: 18px 0 4px; }
+  .app-card .info .sub { color: var(--text-soft); font-size: 0.95em; margin-bottom: 16px; }
+  .app-card .info p.desc { color: var(--text-soft); font-size: 0.98em; }
+  .app-icon {
+    width: 68px; height: 68px; border-radius: 20px; font-size: 36px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+  .app-icon.brain { background: linear-gradient(135deg, #8B7CFF, #5438C9); }
+  .app-icon.om { background: linear-gradient(135deg, #FFB35C, #C05E05); }
+
+  ul.features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  ul.features li {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px; padding: 12px 16px; font-size: 0.93em;
+  }
+  ul.features li .ico { flex-shrink: 0; }
+  ul.features li b { color: var(--text); }
+  ul.features li span.txt { color: var(--text-soft); }
+
+  .langs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .langs span {
+    background: rgba(139, 124, 255, 0.1);
+    border: 1px solid rgba(139, 124, 255, 0.25);
+    color: #C9C2FF;
+    border-radius: 999px; padding: 4px 14px; font-size: 0.87em;
+  }
+  .app-card.om-card .langs span {
+    background: rgba(255, 161, 73, 0.1);
+    border-color: rgba(255, 161, 73, 0.3);
+    color: #FFD1A3;
+  }
+
+  .get-row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+  .play-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #fff; color: #0B0E1A; text-decoration: none;
+    border-radius: 14px; padding: 11px 22px; line-height: 1.2;
+    font-weight: 600; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .play-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15); }
+  .play-btn .tri { font-size: 20px; }
+  .play-btn small { display: block; font-size: 0.68em; font-weight: 500; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.5px; }
   .badge-soon {
-    background: #FFF4E3; color: #8A5A00; border: 1px solid #F0D9AC;
-    border-radius: 999px; padding: 4px 14px; font-size: 0.88em;
+    background: rgba(255, 161, 73, 0.08); color: #FFC58A;
+    border: 1px solid rgba(255, 161, 73, 0.25);
+    border-radius: 999px; padding: 6px 16px; font-size: 0.85em;
   }
-  a { color: var(--violet-deep); }
-  .muted { color: var(--ink-soft); font-size: 0.95em; }
-  footer { text-align: center; padding: 24px; color: var(--ink-soft); font-size: 0.9em; }
+  .privacy-link { color: var(--violet); text-decoration: none; }
+  .privacy-link:hover { text-decoration: underline; }
+
+  /* ---- about ---- */
+  .about-card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: var(--radius); padding: 46px;
+    display: flex; gap: 30px; align-items: center;
+  }
+  .avatar {
+    width: 84px; height: 84px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--violet), var(--saffron));
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Sora", sans-serif; font-weight: 800; font-size: 1.6em; color: #0B0E1A;
+  }
+  .about-card p { color: var(--text-soft); }
+  .about-card .mail {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+    color: var(--violet); text-decoration: none; font-weight: 500;
+  }
+  .about-card .mail:hover { text-decoration: underline; }
+
+  footer {
+    position: relative; z-index: 1; text-align: center;
+    padding: 44px 24px 54px; color: var(--text-soft); font-size: 0.9em;
+    border-top: 1px solid rgba(255, 255, 255, 0.06); margin-top: 40px;
+  }
+
+  /* ---- reveal animation ---- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---- responsive ---- */
+  @media (max-width: 820px) {
+    .app-card { grid-template-columns: 1fr; padding: 28px; gap: 26px; }
+    .about-card { flex-direction: column; text-align: center; padding: 32px 24px; }
+    .nav-links { display: none; }
+    .hero { padding-top: 130px; }
+  }
 </style>
 </head>
 <body>
 
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="glow g3"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <span class="mark">M</span>
+      <span class="name">MKD Labs</span>
+    </a>
+    <div class="nav-links">
+      <a href="#apps">Apps</a>
+      <a href="#about">About</a>
+      <a href="mailto:mukesh.rietjp@gmail.com">Contact</a>
+    </div>
+  </div>
+</nav>
+
 <div class="hero">
-  <h1>MKD Labs</h1>
-  <p class="tag">Simple, honest apps for families — fully offline,
-  no ads, and no data collection.</p>
+  <div class="pill">🇮🇳 Made in India &nbsp;·&nbsp; 100% offline &nbsp;·&nbsp; No ads</div>
+  <h1>Simple, honest apps<br><span class="grad">for the whole family.</span></h1>
+  <p class="sub">From first words for little learners to the daily Panchang for the elders —
+  apps that work fully offline, collect nothing, and respect your family.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="#apps">Explore our apps ↓</a>
+    <a class="btn ghost" href="mailto:mukesh.rietjp@gmail.com">Get in touch</a>
+  </div>
+  <div class="trust-row">
+    <span><b>✓</b> No ads, ever</span>
+    <span><b>✓</b> No data collection</span>
+    <span><b>✓</b> Works without internet</span>
+  </div>
 </div>
 
-<main>
+<section id="apps">
+  <div class="sec-head reveal">
+    <h2>Our apps</h2>
+    <p>Built with care, for every generation at home.</p>
+  </div>
 
-  <div class="card">
-    <div class="app-head">
+  <div class="app-card reveal">
+    <div class="info">
       <div class="app-icon brain">🧠</div>
-      <div>
-        <h2>Little Brain: Words for Kids</h2>
-        <p class="sub">For children aged 2–6 · Learn Hindi &amp; 10 more Indian languages</p>
+      <h3>Little Brain: Words for Kids</h3>
+      <p class="sub">For children aged 2–6 · Learn Hindi &amp; 10 more Indian languages</p>
+      <p class="desc">A fun, colourful learning app where kids discover Indian languages
+      through real photos, real sounds and playful games. Letters are taught the
+      traditional way — <strong style="color:var(--text)">“अ से अनार, आ से आम”</strong> —
+      along with ~100 everyday words, tap-to-hear pronunciation, a find-the-picture
+      game, and stars &amp; badges to keep little learners smiling.</p>
+      <div class="langs">
+        <span>हिन्दी</span><span>English</span><span>राजस्थानी</span><span>मराठी</span>
+        <span>ગુજરાતી</span><span>ਪੰਜਾਬੀ</span><span>বাংলা</span><span>தமிழ்</span>
+        <span>తెలుగు</span><span>ಕನ್ನಡ</span><span>മലയാളം</span>
+      </div>
+      <div class="get-row">
+        <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.mkd.littlesteps">
+          <span class="tri">▶</span>
+          <span><small>Get it on</small>Google Play</span>
+        </a>
+        <span class="badge-soon">🚧 In closed testing — launching soon</span>
       </div>
     </div>
-    <p>A fun, colourful learning app where kids discover Indian languages through
-    real photos, real sounds and playful games. Letters are taught the traditional
-    way — <strong>“अ से अनार, आ से आम”</strong> — along with ~100 everyday words in
-    10 categories, tap-to-hear pronunciation at normal or slow speed, a
-    find-the-picture game, and stars &amp; badges to keep little learners smiling.</p>
-    <ul class="features">
-      <li>✅ 100% offline — no internet permission at all</li>
-      <li>✅ No ads, no in-app purchases</li>
-      <li>✅ No data collection — <a href="privacy-policy.html">read the privacy policy</a></li>
-      <li>✅ Made for small hands: big buttons, bright colours, gentle sounds</li>
-    </ul>
-    <div class="langs">
-      <span>हिन्दी</span><span>English</span><span>राजस्थानी</span><span>मराठी</span>
-      <span>ગુજરાતી</span><span>ਪੰਜਾਬੀ</span><span>বাংলা</span><span>தமிழ்</span>
-      <span>తెలుగు</span><span>ಕನ್ನಡ</span><span>മലയാളം</span>
-    </div>
-    <div class="get-row">
-      <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.mkd.littlesteps">
-        <span class="tri">▶</span>
-        <span><small>Get it on</small><span class="big">Google Play</span></span>
-      </a>
-      <span class="badge-soon">🚧 In closed testing — launching soon on Google Play</span>
+    <div>
+      <ul class="features">
+        <li><span class="ico">📚</span><span class="txt"><b>First words &amp; letters</b> — full alphabet in every language with example words, plus 10 everyday categories: animals, fruits, vehicles, colours and more</span></li>
+        <li><span class="ico">🔊</span><span class="txt"><b>Real photos &amp; real sounds</b> — hear the lion roar and the rain fall; tap any word to hear it at normal or slow speed</span></li>
+        <li><span class="ico">🎮</span><span class="txt"><b>Play &amp; earn rewards</b> — find-the-picture games with stars, badges and cheerful celebrations</span></li>
+        <li><span class="ico">🛡️</span><span class="txt"><b>Made for parents to trust</b> — 100% offline, no ads, no in-app purchases, no data collection — <a class="privacy-link" href="privacy-policy.html">read the privacy policy</a></span></li>
+      </ul>
     </div>
   </div>
 
-  <div class="card">
-    <div class="app-head">
+  <div class="app-card om-card reveal">
+    <div class="info">
       <div class="app-icon om">🕉️</div>
-      <div>
-        <h2>Hindu Calendar हिन्दू पंचांग</h2>
-        <p class="sub">Panchang, Kundali &amp; Shubh Muhurat — fully in Hindi</p>
+      <h3>Hindu Calendar हिन्दू पंचांग</h3>
+      <p class="sub">Panchang, Kundali &amp; Shubh Muhurat — fully in Hindi</p>
+      <p class="desc">सम्पूर्ण पंचांग, कुंडली, मुहूर्त और त्योहार — पूरी तरह हिन्दी में।
+      Every calculation happens on your phone —
+      <strong style="color:var(--text)">100% offline</strong>, every feature works
+      without internet.</p>
+      <div class="langs">
+        <span>पंचांग</span><span>कुंडली</span><span>कुंडली मिलान</span>
+        <span>मुहूर्त</span><span>त्योहार</span>
+      </div>
+      <div class="get-row">
+        <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.mkd.hinducalendar">
+          <span class="tri">▶</span>
+          <span><small>Get it on</small>Google Play</span>
+        </a>
+        <span class="badge-soon">🚧 In closed testing — launching soon</span>
       </div>
     </div>
-    <p>सम्पूर्ण पंचांग, कुंडली, मुहूर्त और त्योहार — पूरी तरह हिन्दी में। Every
-    calculation happens on your phone — <strong>100% offline</strong>, every feature
-    works without internet.</p>
-    <ul class="features">
-      <li>📿 <strong>Panchang</strong> — Tithi, Nakshatra, Yoga, Karana with end times;
-      Vikram &amp; Shaka Samvat; sunrise, sunset, moonrise &amp; moonset for your city;
-      Panchang for any date across hundreds of years</li>
-      <li>🪐 <strong>Kundali</strong> — Janam Kundli in North, South &amp; East Indian
-      styles, Vimshottari Dasha, Avakahada Chakra, save &amp; share as PDF</li>
-      <li>💑 <strong>Kundali Matching</strong> — Ashtakoot Gun Milan out of 36 with
-      detailed breakdown, Nadi &amp; Bhakoot dosha alerts</li>
-      <li>⏳ <strong>Muhurat</strong> — Choghadiya and daily Shubh Muhurat</li>
-      <li>✅ 100% offline · in Hindi · works without internet</li>
-    </ul>
-    <div class="get-row">
-      <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.mkd.hinducalendar">
-        <span class="tri">▶</span>
-        <span><small>Get it on</small><span class="big">Google Play</span></span>
-      </a>
-      <span class="badge-soon">🚧 In closed testing — launching soon on Google Play</span>
+    <div>
+      <ul class="features">
+        <li><span class="ico">📿</span><span class="txt"><b>Panchang</b> — Tithi, Nakshatra, Yoga, Karana with end times; Vikram &amp; Shaka Samvat; sunrise, sunset, moonrise &amp; moonset for your city — for any date across hundreds of years</span></li>
+        <li><span class="ico">🪐</span><span class="txt"><b>Kundali</b> — Janam Kundli in North, South &amp; East Indian styles, Vimshottari Dasha, Avakahada Chakra, save &amp; share as PDF</span></li>
+        <li><span class="ico">💑</span><span class="txt"><b>Kundali Matching</b> — Ashtakoot Gun Milan out of 36 with detailed breakdown, Nadi &amp; Bhakoot dosha alerts</span></li>
+        <li><span class="ico">⏳</span><span class="txt"><b>Muhurat</b> — Choghadiya and daily Shubh Muhurat, so every good beginning starts at the right time</span></li>
+      </ul>
     </div>
   </div>
+</section>
 
-  <div class="card">
+<section id="about">
+  <div class="sec-head reveal">
     <h2>About the developer</h2>
-    <p>Hi, I'm <strong>Mukesh Kumar Dadarwal</strong> — I build simple, honest apps
-    for families. Little Brain started as a way to teach my own family's languages
-    to the next generation.</p>
-    <p class="muted" style="margin-top:8px">Contact:
-      <a href="mailto:mukesh.rietjp@gmail.com">mukesh.rietjp@gmail.com</a></p>
   </div>
-</main>
+  <div class="about-card reveal">
+    <div class="avatar">MD</div>
+    <div>
+      <p>Hi, I'm <strong style="color:var(--text)">Mukesh Kumar Dadarwal</strong> — the
+      one-person team behind MKD Labs. I build simple, honest apps for families.
+      Little Brain started as a way to teach my own family's languages to the next
+      generation, and Hindu Calendar keeps our traditions a tap away for the elders.</p>
+      <a class="mail" href="mailto:mukesh.rietjp@gmail.com">✉️ mukesh.rietjp@gmail.com</a>
+    </div>
+  </div>
+</section>
 
 <footer>
   © 2026 MKD Labs
 </footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 
 </body>
 </html>

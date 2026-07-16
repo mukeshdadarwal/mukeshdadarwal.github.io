@@ -353,10 +353,15 @@
 </footer>
 
 <script>
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  // Reveal anything at or above the viewport, so fast scrolls and anchor jumps never leave content hidden
+  const sweep = () => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add('in');
+    });
+  };
+  addEventListener('scroll', sweep, { passive: true });
+  addEventListener('resize', sweep, { passive: true });
+  sweep();
 </script>
 
 </body>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Math Games</title>
+<meta name="description" content="Privacy policy for Math Games — an offline brain-training game collection that collects no data at all.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0E1A;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --text: #EDEFF7;
+    --text-soft: #A7ADC7;
+    --violet: #8B7CFF;
+    --violet-deep: #6C4CE8;
+    --green: #4ADE80;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden;
+  }
+  h1, h2 { font-family: "Sora", "Inter", sans-serif; letter-spacing: -0.02em; }
+  /* radial-gradients instead of filter:blur — huge blurs are extremely slow on iOS Safari */
+  .glow {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    transform: scale(1.7);
+  }
+  .glow.g1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(20, 184, 166, 0.28) 0%, rgba(20, 184, 166, 0) 68%); top: -200px; left: -140px; }
+  .glow.g2 { width: 440px; height: 440px; background: radial-gradient(circle, rgba(74, 222, 128, 0.16) 0%, rgba(74, 222, 128, 0) 68%); bottom: -220px; right: -180px; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(11, 14, 26, 0.65);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .nav-inner {
+    max-width: 860px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+  .logo .mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, #8B7CFF, #FFA149);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Sora", sans-serif; font-weight: 800; font-size: 15px; color: #0B0E1A;
+  }
+  .logo span.name { font-family: "Sora", sans-serif; font-weight: 700; font-size: 1.05em; }
+  nav a.back { color: var(--text-soft); text-decoration: none; font-size: 0.93em; font-weight: 500; }
+  nav a.back:hover { color: var(--text); }
+
+  main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 130px 24px 60px; }
+  .head { text-align: center; margin-bottom: 44px; }
+  .head .app-icon {
+    width: 76px; height: 76px; border-radius: 22px; font-size: 40px; margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #2DD4BF, #0D9488);
+    box-shadow: 0 12px 36px rgba(20, 184, 166, 0.45);
+  }
+  .head h1 { font-size: clamp(1.6em, 4vw, 2.2em); }
+  .head p.sub { color: var(--text-soft); margin-top: 8px; }
+  .head .updated {
+    display: inline-block; margin-top: 16px; font-size: 0.85em; color: var(--text-soft);
+    border: 1px solid var(--card-border); background: var(--card);
+    border-radius: 999px; padding: 5px 16px;
+  }
+
+  .tldr {
+    background: rgba(74, 222, 128, 0.06); border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 18px; padding: 20px 24px; margin-bottom: 34px;
+    color: var(--text); font-size: 1.02em;
+  }
+  .tldr b { color: var(--green); }
+
+  section.card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 18px; padding: 26px 30px; margin-bottom: 18px;
+  }
+  section.card h2 { font-size: 1.15em; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  section.card p, section.card li { color: var(--text-soft); font-size: 0.97em; }
+  section.card strong { color: var(--text); }
+  section.card ul { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 9px; }
+  section.card ul li { padding-left: 26px; position: relative; }
+  section.card ul li::before { content: "✓"; color: var(--green); position: absolute; left: 2px; font-weight: 700; }
+  code {
+    background: rgba(255, 255, 255, 0.07); border-radius: 6px; padding: 2px 8px;
+    font-size: 0.9em; color: #C9C2FF;
+  }
+  a { color: var(--violet); }
+  footer {
+    position: relative; z-index: 1; text-align: center;
+    padding: 34px 24px 46px; color: var(--text-soft); font-size: 0.9em;
+    border-top: 1px solid rgba(255, 255, 255, 0.06); margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <span class="mark">M</span>
+      <span class="name">MKD Labs</span>
+    </a>
+    <a class="back" href="index.html">← Back to home</a>
+  </div>
+</nav>
+
+<main>
+  <div class="head">
+    <div class="app-icon">🧮</div>
+    <h1>Privacy Policy</h1>
+    <p class="sub">Math Games &nbsp;·&nbsp; <code>com.quickbrain.mathgames</code></p>
+    <span class="updated">Last updated: 23 July 2026</span>
+  </div>
+
+  <div class="tldr">
+    <b>The short version:</b> Math Games collects <b>no data at all</b>. It has no
+    internet permission, no ads, no accounts, and no tracking — so your data can't
+    go anywhere, because the app can't send anything anywhere.
+  </div>
+
+  <section class="card">
+    <h2>📋 Data we collect</h2>
+    <p><strong>None.</strong> Math Games does not collect, store, transmit, or share
+    any personal information or device data. Specifically, the app:</p>
+    <ul>
+      <li>Requires <strong>no internet access</strong> — it works fully offline and
+          declares no network permission, so it is technically unable to send data anywhere</li>
+      <li>Has <strong>no user accounts</strong>, sign-up, or login</li>
+      <li>Contains <strong>no advertising</strong> of any kind</li>
+      <li>Uses <strong>no analytics, tracking, or third-party SDKs</strong> that collect data</li>
+      <li>Requests <strong>no device permissions</strong> (no camera, microphone,
+          location, contacts, or storage access)</li>
+      <li>Makes <strong>no in-app purchases</strong></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>💾 Data stored on the device</h2>
+    <p>The app saves a small amount of game progress — best scores, earned XP, stars,
+    and unlock/progress state — <strong>only on the device itself</strong>, using
+    Android's <code>SharedPreferences</code>. There is no database and no external
+    game service. This data never leaves the device, is not linked to any identity,
+    and is deleted when the app is uninstalled.</p>
+  </section>
+
+  <section class="card">
+    <h2>👶 Children's privacy</h2>
+    <p>Math Games is safe for all ages, including children. Because the app collects
+    no data at all, no personal information from children (or anyone else) is ever
+    gathered or processed, in line with the Children's Online Privacy Protection Act
+    (COPPA) and the GDPR.</p>
+  </section>
+
+  <section class="card">
+    <h2>🔄 Changes to this policy</h2>
+    <p>If a future version of the app ever changes how data is handled, this policy
+    will be updated before that version is released, and the "Last updated" date
+    above will change.</p>
+  </section>
+
+  <section class="card">
+    <h2>✉️ Contact</h2>
+    <p>If you have any questions about this policy, contact:<br>
+    Mukesh Kumar Dadarwal — <a href="mailto:mukesh.rietjp@gmail.com">mukesh.rietjp@gmail.com</a></p>
+  </section>
+</main>
+
+<footer>© 2026 MKD Labs · <a href="index.html" style="color:var(--text-soft)">mkdlabs.github.io</a></footer>
+
+</body>
+</html>
